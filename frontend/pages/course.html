@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Skilled — Course</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="navInner">
+      <a class="brand" href="./index.html">
+        <span class="brandText">Skilled</span><span class="brandDot"></span>
+      </a>
+
+      <nav class="navLinks">
+        <a class="navLink" href="./index.html">Home</a>
+        <a class="navLink active" href="./courses.html">Courses</a>
+        <a class="navLink" href="./my-courses.html">My Courses</a>
+        <a class="navLink" href="./admin.html">Admin</a>
+      </nav>
+
+      <div class="navRight">
+        <a class="btn btnSoft" id="loginBtn" href="./login.html">Login</a>
+        <a class="btn btnSoft" id="profileBtn" href="./profile.html" style="display:none;">Profile</a>
+        <button class="btn btnSoft" id="logoutBtn" style="display:none;">Logout</button>
+
+        <a class="iconBtn" href="./my-courses.html" aria-label="Cart">
+          <span class="cartIcon">🛒</span>
+          <span class="cartBadge" id="cartCount">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <a class="backLink" href="./courses.html">← Back to courses</a>
+
+    <section class="detail">
+      <div class="detailMedia">
+        <img id="cover" class="detailImg" alt="course" />
+      </div>
+
+      <div class="detailInfo">
+        <div class="detailMeta">
+          <span class="tag" id="catTag"></span>
+          <span class="tag tagSoft" id="lvlTag"></span>
+        </div>
+
+        <h1 class="detailTitle" id="title"></h1>
+        <p class="detailDesc" id="desc"></p>
+
+        <div class="detailRow">
+          <div class="priceBig" id="price"></div>
+          <div class="ratingLine">
+            <span class="stars" id="stars"></span>
+            <span class="muted" id="reviews"></span>
+          </div>
+        </div>
+
+        <div class="detailActions">
+          <button class="btn btnPrimary" id="addBtn">Add to Cart</button>
+          <button class="btn btnSoft" id="enrollBtn">Enroll</button>
+        </div>
+
+        <div class="divider"></div>
+
+        <h3 class="sectionTitle">What you’ll learn</h3>
+        <ul class="learnList" id="learn"></ul>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panelHead">
+        <h3 class="sectionTitle">Lessons</h3>
+        <span class="muted" id="lessonsCount"></span>
+      </div>
+      <div class="lessonList" id="lessons"></div>
+    </section>
+  </main>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/courses.js"></script>
+</body>
+</html>

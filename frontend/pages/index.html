@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Skilled — Home</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body>
+  <header class="nav">
+    <div class="navInner">
+      <a class="brand" href="./index.html">
+        <span class="brandText">Skilled</span><span class="brandDot"></span>
+      </a>
+
+      <nav class="navLinks">
+        <a class="navLink active" href="./index.html">Home</a>
+        <a class="navLink" href="./courses.html">Courses</a>
+        <a class="navLink" href="./my-courses.html">My Courses</a>
+        <a class="navLink" href="./admin.html">Admin</a>
+      </nav>
+
+      <div class="navRight">
+        <a class="btn btnSoft" id="loginBtn" href="./login.html">Login</a>
+        <a class="btn btnSoft" id="profileBtn" href="./profile.html" style="display:none;">Profile</a>
+        <button class="btn btnSoft" id="logoutBtn" style="display:none;">Logout</button>
+
+        <a class="iconBtn" href="./my-courses.html" aria-label="My Courses">
+          <span class="cartIcon">🛒</span>
+          <span class="cartBadge" id="cartCount">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <!-- HERO (2 banners) -->
+    <section class="homeHeroGrid">
+      <!-- Left Banner -->
+      <article class="homeHeroCard homeHeroCardLeft">
+        <div class="homeHeroText">
+          <h1 class="homeHeroTitle">Start, switch, or advance your career</h1>
+          <p class="homeHeroSub">
+            Skilled — modern online platform: browse courses, filter by category and package,
+            enroll in courses, and track progress in <b>My Courses</b>.
+          </p>
+
+          <div class="homeHeroActions">
+            <a class="btn btnDark" href="./register.html">Join for Free →</a>
+            <a class="btn btnSoft" href="./courses.html">Explore Courses</a>
+          </div>
+        </div>
+
+        <div class="homeHeroMedia">
+          <div class="homeBlob homeBlobPink"></div>
+          <div class="homeBlob homeBlobGreen"></div>
+
+          <img class="homeHeroImg"
+               src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=60"
+               alt="Learning" />
+        </div>
+      </article>
+
+      <article class="homeHeroCard homeHeroCardRight">
+        <div class="homeHeroText">
+          <h2 class="homeHeroTitleSm">Drive learning forward</h2>
+          <p class="homeHeroSub">
+            Admin can create/edit/delete courses and lessons. Users can enroll and mark completed.
+          </p>
+
+          <div class="homeHeroActions">
+            <a class="btn btnDark" href="./admin.html">Admin Dashboard →</a>
+            <a class="btn btnSoft" href="./profile.html">My Profile</a>
+          </div>
+        </div>
+
+        <div class="homeLogoGrid">
+          <div class="homeLogo">HTML</div>
+          <div class="homeLogo">CSS</div>
+          <div class="homeLogo">JS</div>
+          <div class="homeLogo">Node</div>
+          <div class="homeLogo">Mongo</div>
+          <div class="homeLogo">JWT</div>
+        </div>
+      </article>
+    </section>
+
+    <section class="homeFeatureRow">
+      <article class="homeFeatureCard">
+        <div>
+          <div class="homeFeatureTitle">Launch a new career</div>
+          <div class="homeFeatureSub">Beginner friendly courses + practice projects.</div>
+        </div>
+        <div class="homeFeatureIcon">🚀</div>
+      </article>
+
+      <article class="homeFeatureCard">
+        <div>
+          <div class="homeFeatureTitle">Gain in-demand skills</div>
+          <div class="homeFeatureSub">Filter by category and package (Basic / Premium / VIP).</div>
+        </div>
+        <div class="homeFeatureIcon">🧠</div>
+      </article>
+
+      <article class="homeFeatureCard">
+        <div>
+          <div class="homeFeatureTitle">Track your progress</div>
+          <div class="homeFeatureSub">Enroll and manage status in “My Courses”.</div>
+        </div>
+        <div class="homeFeatureIcon">🎓</div>
+      </article>
+    </section>
+
+    <section class="coursesTop" style="margin-top:22px;">
+      <button class="btn btnDark btnPill">Top Categories</button>
+
+      <div class="pillRow pillRowWide" id="homeCats">
+        <button class="pill active" data-cat="">All</button>
+        <button class="pill" data-cat="Programming">Programming</button>
+        <button class="pill" data-cat="Data Science">Data Science</button>
+        <button class="pill" data-cat="Web Development">Web Development</button>
+        <button class="pill" data-cat="AI Basics">AI Basics</button>
+        <button class="pill" data-cat="Blockchain">Blockchain</button>
+        <button class="pill" data-cat="Mobile Dev">Mobile Dev</button>
+      </div>
+    </section>
+
+    <section class="toolbar">
+      <div class="searchWrap">
+        <div class="searchIcon">⌕</div>
+        <input id="qHome" class="searchInput" placeholder="Search course..." autocomplete="off" />
+      </div>
+
+      <div class="selectWrap">
+        <select id="levelHome" class="select">
+          <option value="">Any package</option>
+          <option value="basic">Basic</option>
+          <option value="premium">Premium</option>
+          <option value="vip">VIP</option>
+        </select>
+
+        <button class="btn btnSoft" id="goCoursesBtn" type="button">Search</button>
+      </div>
+    </section>
+
+    <section class="gridCards" id="homeGrid"></section>
+
+    <section class="empty" id="homeEmpty" style="display:none;">
+      <div class="emptyTitle">No courses found</div>
+      <div class="emptyText">Try changing filters or search words.</div>
+    </section>
+  </main>
+</body>
+</html>

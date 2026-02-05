@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Skilled — Courses</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="navInner">
+      <a class="brand" href="./index.html">
+        <span class="brandText">Skilled</span><span class="brandDot"></span>
+      </a>
+
+      <nav class="navLinks">
+        <a class="navLink" href="./index.html">Home</a>
+        <a class="navLink active" href="./courses.html">Courses</a>
+        <a class="navLink" href="./my-courses.html">My Courses</a>
+        <a class="navLink" href="./admin.html">Admin</a>
+      </nav>
+
+      <div class="navRight">
+        <a class="btn btnSoft" id="loginBtn" href="./login.html">Login</a>
+        <a class="btn btnSoft" id="profileBtn" href="./profile.html" style="display:none;">Profile</a>
+        <button class="btn btnSoft" id="logoutBtn" style="display:none;">Logout</button>
+
+        <a class="iconBtn" href="./my-courses.html" aria-label="Cart">
+          <span class="cartIcon">🛒</span>
+          <span class="cartBadge" id="cartCount">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="coursesTop">
+      <button class="btn btnDark btnPill">All Courses</button>
+
+      <div class="pillRow pillRowWide">
+        <button class="pill active" data-cat="">All</button>
+        <button class="pill" data-cat="Programming">Programming</button>
+        <button class="pill" data-cat="Data Science">Data Science</button>
+        <button class="pill" data-cat="Web Development">Web Development</button>
+        <button class="pill" data-cat="AI Basics">AI Basics</button>
+        <button class="pill" data-cat="Blockchain">Blockchain</button>
+        <button class="pill" data-cat="Mobile Dev">Mobile Dev</button>
+      </div>
+    </section>
+
+    <section class="toolbar">
+      <div class="searchWrap">
+        <div class="searchIcon">⌕</div>
+        <input id="q" class="searchInput" placeholder="Search programming course..." autocomplete="off" />
+      </div>
+
+      <div class="selectWrap">
+        <select id="level" class="select">
+          <option value="">Any package</option>
+          <option value="basic">Basic</option>
+          <option value="premium">Premium</option>
+          <option value="vip">VIP</option>
+        </select>
+
+        <select id="sort" class="select">
+          <option value="">Sort</option>
+          <option value="priceAsc">Price: low → high</option>
+          <option value="priceDesc">Price: high → low</option>
+          <option value="titleAsc">Title: A → Z</option>
+          <option value="titleDesc">Title: Z → A</option>
+        </select>
+
+        <button class="btn btnSoft" id="resetBtn">Reset</button>
+      </div>
+    </section>
+
+    <section class="gridCards" id="grid"></section>
+
+    <section class="empty" id="empty" style="display:none;">
+      <div class="emptyTitle">No courses found</div>
+      <div class="emptyText">Try changing filters or search words.</div>
+    </section>
+  </main>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/courses.js"></script>
+</body>
+</html>

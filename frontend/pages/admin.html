@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Skilled — Admin Dashboard</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="navInner">
+      <a class="brand" href="./index.html">
+        <span class="brandText">Skilled</span><span class="brandDot"></span>
+      </a>
+
+      <nav class="navLinks">
+        <a class="navLink" href="./index.html">Home</a>
+        <a class="navLink" href="./courses.html">Courses</a>
+        <a class="navLink" href="./my-courses.html">My Courses</a>
+        <a class="navLink active" href="./admin.html">Admin</a>
+      </nav>
+
+      <div class="navRight">
+        <a class="btn btnSoft" id="loginBtn" href="./login.html">Login</a>
+        <a class="btn btnSoft" id="profileBtn" href="./profile.html" style="display:none;">Profile</a>
+        <button class="btn btnSoft" id="logoutBtn" style="display:none;">Logout</button>
+
+        <a class="iconBtn" href="./my-courses.html" aria-label="My Courses">
+          <span class="cartIcon">🛒</span>
+          <span class="cartBadge" id="cartCount">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="adminTop">
+      <h1>Admin Dashboard</h1>
+      <p>Manage courses, users, and other platform settings.</p>
+
+      <div class="adminActions">
+        <a class="btn btnPrimary" href="./create-course.html">Create New Course</a>
+        <a class="btn btnSoft" href="./manage-courses.html">Manage Existing Courses</a>
+        <a class="btn btnSoft" href="./manage-users.html">Manage Users</a>
+      </div>
+    </section>
+
+    <section class="recentActions">
+      <h2>Recent Actions</h2>
+      <ul>
+        <li>Created a new course: "Introduction to AI"</li>
+        <li>Deleted course: "Learn JavaScript"</li>
+        <li>Updated user profile for "user123"</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="../js/admin.js"></script>
+</body>
+</html>

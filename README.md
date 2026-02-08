@@ -123,24 +123,23 @@ Description: Landing page with navigation and featured courses.
 📚 Courses Page
 
 Description: Browse all courses with filters by category and sorting.
-📸 screenshots/courses.png
+<img width="900" height="492" alt="Снимок экрана 2026-02-09 в 00 21 31" src="https://github.com/user-attachments/assets/efdd55f1-ed79-4fc5-80ef-42626a1de3fa" />
+
 
 📖 Course Details Page
 
 Description: Course info, pricing, and lesson list with video preview.
-📸 screenshots/course-details.png
+<img width="900" height="672" alt="Снимок экрана 2026-02-09 в 00 56 16" src="https://github.com/user-attachments/assets/7b8ea416-6beb-4c40-bd13-2dd7299fe338" />
 
-🎬 Lesson Video Player
-
-Description: Embedded YouTube videos with smooth in-page playback.
-📸 screenshots/lesson-video.png
 
 🎓 My Courses
 
 Description: Displays all courses the user is enrolled in.
-📸 screenshots/my-courses.png
+<img width="900" height="492" alt="Снимок экрана 2026-02-09 в 00 21 31" src="https://github.com/user-attachments/assets/54ef0dd8-dc7a-4898-8100-313a822991dd" />
+
 
 🔐 Admin Panel
 
 Description: Admin-only page to manage courses and lessons.
-📸 screenshots/admin.png
+<img width="900" height="523" alt="Снимок экрана 2026-02-09 в 00 22 11" src="https://github.com/user-attachments/assets/1b830135-2743-426c-9800-fe14c0a4a356" />
+

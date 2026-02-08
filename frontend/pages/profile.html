@@ -14,27 +14,17 @@
 <body>
   <header class="nav">
     <div class="navInner">
-      <a class="brand" href="./index.html">
+      <a class="brand" href="/pages/index.html">
         <span class="brandText">Skilled</span><span class="brandDot"></span>
       </a>
 
       <nav class="navLinks">
-        <a class="navLink" href="./index.html">Home</a>
-        <a class="navLink" href="./courses.html">Courses</a>
-        <a class="navLink" href="./my-courses.html">My Courses</a>
-        <a class="navLink" href="./admin.html">Admin</a>
+        <a class="navLink" href="/pages/index.html">Home</a>
+        <a class="navLink" href="/pages/courses.html">Courses</a>
+        <a class="navLink" href="/pages/my-courses.html">My Courses</a>
+        <a class="navLink" href="/pages/admin.html">Admin</a>
       </nav>
 
-      <div class="navRight">
-        <a class="btn btnSoft" id="loginBtn" href="./login.html">Login</a>
-        <a class="btn btnSoft" id="profileBtn" href="./profile.html" style="display:none;">Profile</a>
-        <button class="btn btnSoft" id="logoutBtn" style="display:none;">Logout</button>
-
-        <a class="iconBtn" href="./my-courses.html" aria-label="Cart">
-          <span class="cartIcon">🛒</span>
-          <span class="cartBadge" id="cartCount">0</span>
-        </a>
-      </div>
     </div>
   </header>
 
@@ -53,15 +43,10 @@
         <button type="submit" class="btn btnPrimary">Save Changes</button>
       </form>
     </section>
-
-    <section class="myEnrollments">
-      <h2>Your Enrolled Courses</h2>
-      <ul id="enrolledCourses">
-        <!-- List of enrolled courses will go here -->
-      </ul>
-    </section>
   </main>
 
-  <script src="../js/profile.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/profile.js"></script>
+
 </body>
 </html>

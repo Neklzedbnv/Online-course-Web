@@ -1,24 +1,73 @@
-const API_URL = "http://localhost:5000/api/auth";
+const $ = (id) => document.getElementById(id);
 
-// LOGIN
-document.getElementById("loginForm")?.addEventListener("submit", async (e) => {
+function saveAuth(token, user) {
+  localStorage.setItem("token", token);
+  localStorage.setItem("user", JSON.stringify(user));
+}
+
+async function handleLogin(e) {
   e.preventDefault();
 
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+  const email = $("email").value.trim();
+  const password = $("password").value;
 
-  const res = await fetch(`${API_URL}/login`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, password }),
+  try {
+    const res = await api("/api/auth/login", {
+      method: "POST",
+      body: { email, password }
+    });
+
+    saveAuth(res.token, res.user);
+    alert("Logged in!");
+    window.location.href = "./courses.html";
+  } catch (err) {
+    alert(err.message);
+  }
+}
+
+async function handleRegister(e) {
+  e.preventDefault();
+
+  const email = $("email").value.trim();
+  const password = $("password").value;
+
+  try {
+    await api("/api/auth/register", {
+      method: "POST",
+      body: { email, password }
+    });
+
+    alert("Registered ✅ Now log in");
+    window.location.href = "./login.html";
+  } catch (err) {
+    const msg = err?.message || "Register failed";
+    const details = Array.isArray(err?.errors) ? "\n" + err.errors.join("\n") : "";
+    alert(msg + details);
+  }
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("auth.js loaded ✅");
+  console.log("api exists?", typeof api);
+
+  const loginForm = $("loginForm");
+  console.log("loginForm?", loginForm);
+
+  const registerForm = $("registerForm");
+  console.log("registerForm?", registerForm);
+
+  const email = $("email");
+  const password = $("password");
+  console.log("email input?", email, "password input?", password);
+
+  if (loginForm) loginForm.addEventListener("submit", (e) => {
+    console.log("login submit fired ✅");
+    handleLogin(e);
   });
 
-  const data = await res.json();
-
-  if (res.ok) {
-    localStorage.setItem("token", data.token);
-    window.location.href = "index.html";
-  } else {
-    alert(data.message);
-  }
+  if (registerForm) registerForm.addEventListener("submit", (e) => {
+    console.log("register submit fired ✅");
+    handleRegister(e);
+  });
 });

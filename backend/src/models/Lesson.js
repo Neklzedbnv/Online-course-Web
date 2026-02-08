@@ -1,28 +1,14 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const lessonSchema = new mongoose.Schema({
-  course: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Course',
-    required: true,
+const lessonSchema = new mongoose.Schema(
+  {
+    course: { type: mongoose.Schema.Types.ObjectId, ref: "Course", required: true },
+    title: { type: String, required: true },
+    content: { type: String, required: true },
+    duration: { type: Number, required: true },
+    videoUrl: { type: String, default: "" }
   },
-  title: {
-    type: String,
-    required: true,
-  },
-  content: {
-    type: String,
-    required: true,
-  },
-  duration: {
-    type: Number,
-    required: true, 
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-});
+  { timestamps: true }
+);
 
-const Lesson = mongoose.model('Lesson', lessonSchema);
-module.exports = Lesson;
+module.exports = mongoose.model("Lesson", lessonSchema);

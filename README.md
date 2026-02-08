@@ -123,7 +123,8 @@ Description: Landing page with navigation and featured courses.
 📚 Courses Page
 
 Description: Browse all courses with filters by category and sorting.
-<img width="900" height="492" alt="Снимок экрана 2026-02-09 в 00 21 31" src="https://github.com/user-attachments/assets/efdd55f1-ed79-4fc5-80ef-42626a1de3fa" />
+<img width="900" height="809" alt="Снимок экрана 2026-02-09 в 00 21 17" src="https://github.com/user-attachments/assets/d817fcf1-a717-4d8f-8be4-f4e1164b38a8" />
+
 
 
 📖 Course Details Page

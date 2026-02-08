@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Skilled — Create Course</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="navInner">
+      <a class="brand" href="/pages/index.html"><span class="brandText">Skilled</span><span class="brandDot"></span></a>
+      <nav class="navLinks">
+        <a class="navLink" href="/pages/index.html">Home</a>
+        <a class="navLink" href="/pages/courses.html">Courses</a>
+        <a class="navLink" href="/pages/my-courses.html">My Courses</a>
+        <a class="navLink active" href="/pages/admin.html">Admin</a>
+      </nav>
+      <div class="navRight">
+        <a class="btn btnSoft" id="loginBtn" href="/pages/login.html">Login</a>
+        <a class="btn btnSoft" id="profileBtn" href="/pages/profile.html" style="display:none;">Profile</a>
+        <button class="btn btnSoft" id="logoutBtn" style="display:none;">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <a class="backLink" href="/pages/admin.html">← Back to admin</a>
+
+    <section class="panel">
+      <div class="panelHead">
+        <h3 class="sectionTitle">Create New Course</h3>
+      </div>
+
+      <form id="createCourseForm" class="formGrid">
+        <label>Course ID (e.g. 101)
+          <input id="courseId" type="number" min="1" required />
+        </label>
+
+        <label>Title
+          <input id="title" type="text" required />
+        </label>
+
+        <label>Category
+          <select id="category" required>
+            <option value="">Select</option>
+            <option>Programming</option>
+            <option>Data Science</option>
+            <option>Web Development</option>
+            <option>AI Basics</option>
+            <option>Blockchain</option>
+            <option>Mobile Dev</option>
+          </select>
+        </label>
+
+        <label>Cover URL
+          <input id="cover" type="url" required />
+        </label>
+
+        <label>Description
+          <textarea id="description" rows="5" required></textarea>
+        </label>
+
+        <div class="divider"></div>
+
+        <h3 class="sectionTitle">Prices (USD)</h3>
+
+        <label>Basic
+          <input id="priceBasic" type="number" min="0" step="0.01" required />
+        </label>
+
+        <label>Premium
+          <input id="pricePremium" type="number" min="0" step="0.01" required />
+        </label>
+
+        <label>VIP
+          <input id="priceVip" type="number" min="0" step="0.01" required />
+        </label>
+
+        <div class="divider"></div>
+
+        <label>
+          <input id="pkgBasic" type="checkbox" checked />
+          basic package enabled
+        </label>
+        <label>
+          <input id="pkgPremium" type="checkbox" checked />
+          premium package enabled
+        </label>
+        <label>
+          <input id="pkgVip" type="checkbox" checked />
+          vip package enabled
+        </label>
+
+        <button class="btn btnPrimary" type="submit">Create</button>
+      </form>
+    </section>
+  </main>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/guard.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

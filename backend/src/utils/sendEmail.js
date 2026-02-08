@@ -1,10 +1,22 @@
-import { mailTransporter } from "../config/mail.js";
+const nodemailer = require("nodemailer");
 
-export const sendEmail = async (to, subject, text) => {
-  await mailTransporter.sendMail({
+const transporter = nodemailer.createTransport({
+  host: process.env.MAIL_HOST,
+  port: Number(process.env.MAIL_PORT),
+  secure: false,
+  auth: {
+    user: process.env.MAIL_USER,
+    pass: process.env.MAIL_PASS,
+  },
+});
+
+async function sendEmail({ to, subject, html }) {
+  return transporter.sendMail({
     from: process.env.MAIL_USER,
     to,
     subject,
-    text,
+    html,
   });
-};
+}
+
+module.exports = sendEmail;

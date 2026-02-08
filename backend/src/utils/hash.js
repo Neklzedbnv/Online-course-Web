@@ -1,23 +1,12 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcryptjs");
 
+async function hashPassword(password) {
+  const salt = await bcrypt.genSalt(10);
+  return bcrypt.hash(password, salt);
+}
 
-const hashPassword = async (password) => {
-  try {
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
-    return hashedPassword;
-  } catch (error) {
-    throw new Error('Ошибка при хэшировании пароля');
-  }
-};
-
-
-const comparePassword = async (password, hashedPassword) => {
-  try {
-    return await bcrypt.compare(password, hashedPassword);
-  } catch (error) {
-    throw new Error('Ошибка при сравнении паролей');
-  }
-};
+async function comparePassword(password, hash) {
+  return bcrypt.compare(password, hash);
+}
 
 module.exports = { hashPassword, comparePassword };

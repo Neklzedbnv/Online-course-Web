@@ -1,13 +1,12 @@
-import jwt from "jsonwebtoken";
-import { jwtConfig } from "../config/jwt.js";
+const jwt = require("jsonwebtoken");
+const cfg = require("../config/jwt");
 
-export const generateToken = (user) => {
-  return jwt.sign(
-    {
-      id: user._id,
-      role: user.role,
-    },
-    jwtConfig.secret,
-    { expiresIn: jwtConfig.expiresIn }
-  );
-};
+function signToken(payload) {
+  return jwt.sign(payload, cfg.secret, { expiresIn: cfg.expiresIn });
+}
+
+function verifyToken(token) {
+  return jwt.verify(token, cfg.secret);
+}
+
+module.exports = { signToken, verifyToken };

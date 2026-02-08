@@ -1,18 +1,20 @@
-const express = require('express');
-const router = express.Router();
-const userController = require('../controllers/user.controller');
-const authMiddleware = require('../middleware/auth.middleware');
+const router = require("express").Router();
+const userController = require("../controllers/user.controller");
+const authMiddleware = require("../middleware/auth.middleware");
+const validate = require("../middleware/validate.middleware");
+const { allowRoles } = require("../middleware/access.middleware");
+const { updateProfileSchema } = require("../validators/user.validator");
 
 
-router.post('/register', userController.register);
+router.get("/profile", authMiddleware, userController.getUser);
 
+router.put(
+  "/profile",
+  authMiddleware,
+  validate(updateProfileSchema),
+  userController.updateUser
+);
+router.get("/my-courses", authMiddleware, userController.myCourses);
 
-router.post('/login', userController.login);
-
-
-router.get('/profile', authMiddleware, userController.getUser);
-
-
-router.put('/profile', authMiddleware, userController.updateUser);
-
+router.get("/admin/users", authMiddleware, allowRoles("admin"), userController.getUsersWithEnrollments);
 module.exports = router;

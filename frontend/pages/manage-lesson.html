@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Skilled — Manage Lessons</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="navInner">
+      <a class="brand" href="/pages/index.html"><span class="brandText">Skilled</span><span class="brandDot"></span></a>
+      <nav class="navLinks">
+        <a class="navLink" href="/pages/index.html">Home</a>
+        <a class="navLink" href="/pages/courses.html">Courses</a>
+        <a class="navLink" href="/pages/my-courses.html">My Courses</a>
+        <a class="navLink active" href="/pages/admin.html">Admin</a>
+      </nav>
+      <div class="navRight">
+        <a class="btn btnSoft" id="loginBtn" href="/pages/login.html">Login</a>
+        <a class="btn btnSoft" id="profileBtn" href="/pages/profile.html" style="display:none;">Profile</a>
+        <button class="btn btnSoft" id="logoutBtn" style="display:none;">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <h1>Manage Lessons</h1>
+    <p class="muted">Create, update, and delete lessons for a selected course.</p>
+
+    <form id="lessonForm" class="panel" style="padding:16px; max-width:820px;">
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+        <h2 class="sectionTitle" style="margin:0;">Lesson Editor</h2>
+      </div>
+
+      <div class="divider"></div>
+
+      <label>Course</label>
+      <select id="courseSelect" required></select>
+      <input type="hidden" id="lessonId" />
+
+
+      <label>Title</label>
+      <input id="title" required />
+
+      <label>Content</label>
+      <textarea id="content" rows="5" required></textarea>
+
+      <label>Duration (minutes)</label>
+      <input id="duration" type="number" min="1" required />
+
+      <label>Video URL (optional)</label>
+      <input id="videoUrl" placeholder="https://youtu.be/..." />
+
+      <div style="display:flex; gap:10px; margin-top:12px;">
+        <button class="btn btnPrimary" id="submitBtn" type="submit">Create</button>
+        <button class="btn btnSoft" id="cancelEditBtn" type="button" style="display:none;">Cancel edit</button>
+        <a class="btn btnSoft" href="/pages/admin.html">Back</a>
+      </div>
+    </form>
+  </main>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/guard.js"></script>
+  <script src="../js/manage-lessons.js"></script>
+</body>
+</html>

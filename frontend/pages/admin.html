@@ -14,27 +14,16 @@
 <body>
   <header class="nav">
     <div class="navInner">
-      <a class="brand" href="./index.html">
+      <a class="brand" href="/pages/index.html">
         <span class="brandText">Skilled</span><span class="brandDot"></span>
       </a>
 
       <nav class="navLinks">
-        <a class="navLink" href="./index.html">Home</a>
-        <a class="navLink" href="./courses.html">Courses</a>
-        <a class="navLink" href="./my-courses.html">My Courses</a>
-        <a class="navLink active" href="./admin.html">Admin</a>
+        <a class="navLink" href="/pages/index.html">Home</a>
+        <a class="navLink" href="/pages/courses.html">Courses</a>
+        <a class="navLink" href="/pages/my-courses.html">My Courses</a>
+        <a class="navLink active" href="/pages/admin.html">Admin</a>
       </nav>
-
-      <div class="navRight">
-        <a class="btn btnSoft" id="loginBtn" href="./login.html">Login</a>
-        <a class="btn btnSoft" id="profileBtn" href="./profile.html" style="display:none;">Profile</a>
-        <button class="btn btnSoft" id="logoutBtn" style="display:none;">Logout</button>
-
-        <a class="iconBtn" href="./my-courses.html" aria-label="My Courses">
-          <span class="cartIcon">🛒</span>
-          <span class="cartBadge" id="cartCount">0</span>
-        </a>
-      </div>
     </div>
   </header>
 
@@ -44,22 +33,18 @@
       <p>Manage courses, users, and other platform settings.</p>
 
       <div class="adminActions">
-        <a class="btn btnPrimary" href="./create-course.html">Create New Course</a>
-        <a class="btn btnSoft" href="./manage-courses.html">Manage Existing Courses</a>
-        <a class="btn btnSoft" href="./manage-users.html">Manage Users</a>
+        <a class="btn btnSoft" href="/pages/create-course.html">Create New Course</a>
+                <a class="btn btnSoft" href="/pages/manage-lesson.html">Manage Lesson</a>
+        <a class="btn btnSoft" href="/pages/manage-courses.html">Manage Existing Courses</a>
+        <a class="btn btnSoft" href="/pages/view-users.html">View Users</a>
+
       </div>
     </section>
 
-    <section class="recentActions">
-      <h2>Recent Actions</h2>
-      <ul>
-        <li>Created a new course: "Introduction to AI"</li>
-        <li>Deleted course: "Learn JavaScript"</li>
-        <li>Updated user profile for "user123"</li>
-      </ul>
-    </section>
   </main>
 
-  <script src="../js/admin.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/guard.js"></script>
+<script src="../js/admin.js"></script>
 </body>
 </html>

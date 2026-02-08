@@ -1,91 +1,72 @@
-const bcrypt = require('bcrypt');
-const User = require('../models/User');
-const jwt = require('jsonwebtoken');
-
-
-exports.register = async (req, res) => {
-  const { email, password } = req.body;
-
-  try {
-    
-    const userExists = await User.findOne({ email });
-    if (userExists) {
-      return res.status(400).json({ message: "Email уже используется!" });
-    }
-
-    
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    
-    const user = new User({ email, password: hashedPassword });
-
-    await user.save();
-    res.status(201).json({ message: "Пользователь успешно зарегистрирован!" });
-  } catch (err) {
-    res.status(500).json({ message: "Ошибка сервера!" });
-  }
-};
-
-
-exports.login = async (req, res) => {
-  const { email, password } = req.body;
-
-  try {
-    
-    const user = await User.findOne({ email });
-    if (!user) {
-      return res.status(404).json({ message: "Пользователь не найден!" });
-    }
-
-    // Проверяем пароль
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      return res.status(400).json({ message: "Неверный пароль!" });
-    }
-
-    
-    const token = jwt.sign(
-      { userId: user._id },
-      process.env.JWT_SECRET,
-      { expiresIn: '1h' }
-    );
-
-    res.status(200).json({ token });
-  } catch (err) {
-    res.status(500).json({ message: "Ошибка сервера!" });
-  }
-};
-
+const User = require("../models/User");
+const Enrollment = require("../models/Enrollment");
 
 exports.getUser = async (req, res) => {
-  try {
-    const user = await User.findById(req.userId);
-    if (!user) {
-      return res.status(404).json({ message: "Пользователь не найден!" });
-    }
-    res.status(200).json({ email: user.email });
-  } catch (err) {
-    res.status(500).json({ message: "Ошибка сервера!" });
-  }
+  res.json({ user: req.user });
 };
-
 
 exports.updateUser = async (req, res) => {
-  const { email, password } = req.body;
-
   try {
-    const hashedPassword = password ? await bcrypt.hash(password, 10) : undefined;
-    const user = await User.findByIdAndUpdate(req.userId, {
-      email,
-      password: hashedPassword || undefined,
-    }, { new: true });
+    const { email, password } = req.body || {};
 
-    if (!user) {
-      return res.status(404).json({ message: "Пользователь не найден!" });
-    }
+    if (email) req.user.email = email.toLowerCase();
+    if (password) req.user.password = password;
 
-    res.status(200).json({ message: "Информация обновлена успешно!" });
-  } catch (err) {
-    res.status(500).json({ message: "Ошибка сервера!" });
+    await req.user.save();
+
+    res.json({
+      message: "Updated",
+      user: { id: req.user._id, email: req.user.email, role: req.user.role }
+    });
+  } catch (e) {
+    res.status(500).json({ message: "Server error", error: e.message });
   }
 };
+exports.myCourses = async (req, res) => {
+  const user = await req.user.populate("courses");
+  res.json({ courses: user.courses });
+};
+
+
+exports.getUsersWithEnrollments = async (req, res) => {
+  try {
+    const users = await User.find({})
+      .select("_id email role createdAt")
+      .sort({ createdAt: -1 });
+
+    const userIds = users.map(u => u._id);
+
+    const enrollments = await Enrollment.find({ user: { $in: userIds } })
+      .populate("course")
+      .sort({ createdAt: -1 });
+
+    const map = new Map();
+    for (const u of users) map.set(String(u._id), []);
+
+    for (const e of enrollments) {
+      const k = String(e.user);
+      if (!map.has(k)) map.set(k, []);
+      if (e.course) {
+        map.get(k).push({
+          courseId: e.course.courseId,
+          title: e.course.title,
+          status: e.status,
+          enrolledAt: e.createdAt
+        });
+      }
+    }
+
+    res.json({
+      users: users.map(u => ({
+        id: u._id,
+        email: u.email,
+        role: u.role,
+        createdAt: u.createdAt,
+        courses: map.get(String(u._id)) || []
+      }))
+    });
+  } catch (e) {
+    res.status(500).json({ message: "Server error", error: e.message });
+  }
+};
+

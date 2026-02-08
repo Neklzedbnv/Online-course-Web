@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Skilled — Manage Courses</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="navInner">
+      <a class="brand" href="/pages/index.html"><span class="brandText">Skilled</span><span class="brandDot"></span></a>
+      <nav class="navLinks">
+        <a class="navLink" href="/pages/index.html">Home</a>
+        <a class="navLink" href="/pages/courses.html">Courses</a>
+        <a class="navLink" href="/pages/my-courses.html">My Courses</a>
+        <a class="navLink active" href="/pages/admin.html">Admin</a>
+      </nav>
+      <div class="navRight">
+        <a class="btn btnSoft" id="loginBtn" href="/pages/login.html">Login</a>
+        <a class="btn btnSoft" id="profileBtn" href="/pages/profile.html" style="display:none;">Profile</a>
+        <button class="btn btnSoft" id="logoutBtn" style="display:none;">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <a class="backLink" href="/pages/admin.html">← Back to admin</a>
+
+    <section class="panel">
+      <div class="panelHead">
+        <h3 class="sectionTitle">Manage Courses</h3>
+        <span class="muted" id="count"></span>
+      </div>
+
+      <div id="coursesAdminList" class="lessonList"></div>
+    </section>
+  </main>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/guard.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

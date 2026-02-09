@@ -19,6 +19,7 @@ const frontendPath = path.join(__dirname, "..", "..", "frontend");
 const pagesPath = path.join(frontendPath, "pages");
 
 app.use(express.static(frontendPath));
+app.use("/pages", express.static(pagesPath));
 
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
@@ -31,8 +32,6 @@ app.get("/", (req, res) => {
 });
 
 app.get("/:page", (req, res, next) => {
-  if (req.params.page.startsWith("api")) return next();
-
   const map = {
     login: "login.html",
     register: "register.html",

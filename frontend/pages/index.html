@@ -15,26 +15,22 @@
 <body>
   <header class="nav">
     <div class="navInner">
-      <a class="brand" href="./index.html">
+      <a class="brand" href="/pages/index.html">
         <span class="brandText">Skilled</span><span class="brandDot"></span>
       </a>
 
       <nav class="navLinks">
-        <a class="navLink active" href="./index.html">Home</a>
-        <a class="navLink" href="./courses.html">Courses</a>
-        <a class="navLink" href="./my-courses.html">My Courses</a>
-        <a class="navLink" href="./admin.html">Admin</a>
+        <a class="navLink active" href="/pages/index.html">Home</a>
+        <a class="navLink" href="/pages/courses.html">Courses</a>
+        <a class="navLink" href="/pages/my-courses.html">My Courses</a>
+        <a class="navLink" href="/pages/admin.html">Admin</a>
       </nav>
 
       <div class="navRight">
-        <a class="btn btnSoft" id="loginBtn" href="./login.html">Login</a>
-        <a class="btn btnSoft" id="profileBtn" href="./profile.html" style="display:none;">Profile</a>
+        <a class="btn btnSoft" id="loginBtn" href="/pages/login.html">Login</a>
+        <a class="btn btnSoft" id="profileBtn" href="/pages/profile.html" style="display:none;">Profile</a>
         <button class="btn btnSoft" id="logoutBtn" style="display:none;">Logout</button>
 
-        <a class="iconBtn" href="./my-courses.html" aria-label="My Courses">
-          <span class="cartIcon">🛒</span>
-          <span class="cartBadge" id="cartCount">0</span>
-        </a>
       </div>
     </div>
   </header>
@@ -75,7 +71,7 @@
           </p>
 
           <div class="homeHeroActions">
-            <a class="btn btnDark" href="./admin.html">Admin Dashboard →</a>
+            <a class="btn btnSoft" href="#" id="adminLink">Admin</a>
             <a class="btn btnSoft" href="./profile.html">My Profile</a>
           </div>
         </div>
@@ -99,8 +95,7 @@
         </div>
         <div class="homeFeatureIcon">🚀</div>
       </article>
-
-      <article class="homeFeatureCard">
+ <article class="homeFeatureCard">
         <div>
           <div class="homeFeatureTitle">Gain in-demand skills</div>
           <div class="homeFeatureSub">Filter by category and package (Basic / Premium / VIP).</div>
@@ -157,4 +152,5 @@
     </section>
   </main>
 </body>
-</html>
+<script src="../js/api.js"></script>
+</html>     

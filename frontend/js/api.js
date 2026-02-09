@@ -1,81 +1,58 @@
-const API_URL = "http://localhost:3000"; 
+const API_BASE = "";
 
+async function api(path, opts = {}) {
+  const token = localStorage.getItem("token");
 
-async function postData(endpoint, data) {
+  const res = await fetch(API_BASE + path, {
+    method: opts.method || "GET",
+    headers: {
+      "Content-Type": "application/json",
+      ...(token ? { Authorization: "Bearer " + token } : {}),
+    },
+    body: opts.body ? JSON.stringify(opts.body) : undefined,
+  });
+
+  const data = await res.json().catch(() => ({}));
+
+  if (!res.ok) {
+    throw new Error(data.message || `HTTP ${res.status}`);
+  }
+
+  return data;
+}
+
+function getUser() {
   try {
-    const response = await fetch(`${API_URL}${endpoint}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    return await response.json();
-  } catch (error) {
-    console.error("Ошибка при отправке данных:", error);
-    throw error;
+    return JSON.parse(localStorage.getItem("user"));
+  } catch {
+    return null;
   }
 }
 
+function setupAdminAccess() {
+  const adminLink = document.getElementById("adminLink");
+  if (!adminLink) return;
 
-async function getData(endpoint) {
-  try {
-    const response = await fetch(`${API_URL}${endpoint}`);
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+  adminLink.onclick = (e) => {
+    e.preventDefault();
+
+    const user = getUser();
+
+    if (!user) {
+      alert("Please login first");
+      window.location.href = "/pages/login.html";
+      return;
     }
 
-    return await response.json();
-  } catch (error) {
-    console.error("Ошибка при получении данных:", error);
-    throw error;
-  }
+    if (user.role !== "admin") {
+      alert("Permission denied ❌\nOnly admin can view this page.");
+      return;
+    }
+
+    window.location.href = "/pages/admin.html";
+  };
 }
 
-
-const registerUser = async (userData) => {
-  try {
-    const result = await postData("/api/auth/register", userData);
-    return result;
-  } catch (error) {
-    console.error("Ошибка при регистрации:", error);
-  }
-};
-
-
-const loginUser = async (credentials) => {
-  try {
-    const result = await postData("/api/auth/login", credentials);
-    return result;
-  } catch (error) {
-    console.error("Ошибка при входе:", error);
-  }
-};
-
-
-const getCourses = async () => {
-  try {
-    const courses = await getData("/api/courses");
-    return courses;
-  } catch (error) {
-    console.error("Ошибка при получении курсов:", error);
-  }
-};
-
-
-const enrollInCourse = async (userId, courseId) => {
-  try {
-    const result = await postData(`/api/enrollments`, { userId, courseId });
-    return result;
-  } catch (error) {
-    console.error("Ошибка при записи на курс:", error);
-  }
-};
-
-
-export { registerUser, loginUser, getCourses, enrollInCourse };
+document.addEventListener("DOMContentLoaded", () => {
+  setupAdminAccess();
+});
